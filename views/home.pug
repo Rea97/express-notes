@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  each task in tasks
+    div(class="row")
+      div(class="col-md-10 col-md-offset-1")
+        div(class="panel panel-default")
+          div(class="panel-body")
+            div(class="row")
+              div(class="col-lg-2")
+                div(class="panel panel-default m-b-0")
+                  div(class="panel-body")
+                    p(class="m-b-5")
+                      i(class="fa fa-clock-o" aria-hidden="true") &nbsp;#{task.due_at.split(' ')[0]}
+                    h4(class="m-t-0" data-toggle="tooltip" data-placement="right" title="task...")
+                    p(class="m-b-5") Difficulty
+
+                    - let i = 0;
+                    while i < task.difficulty
+                      i(class="fa fa-star" aria-hidden="true")
+                      - i++
+
+              div(class="col-lg-8")
+                h2(class="m-t-0")
+                  a(href="/tasks/1")= task.title
+                p #{task.content}
+              div(class="col-lg-2")
+                div(class="row")
+                  div(class="col-md-12")
+                    button(onclick="document.getElementById('archive-task-form').submit()" class="btn btn-block btn-warning")
+                      i(class="fa fa-archive" aria-hidden="true")
+                      form(id="archive-task-form" style="display: none" method="post" action="/tasks/1")
+                br
+                div(class="row")
+                  div(class="col-md-12")
+                    a(href="/tasks/1" class="btn btn-block btn-primary")
+                      i(class="fa fa-edit" aria-hidden="true")
+
+              
